@@ -1,10 +1,22 @@
 <?php
 
+//Connect to a database
+$connect = mysqli_connect('localhost', 'root', '159753', 'ajaxtest');
+
 echo'Processing...';
 
 //Check for POST variable
 if(isset($_POST['name'])){
+    $name = mysqli_real_escape_string($connect, $_POST['name']);
     echo 'POST: Your name is '.$_POST['name'];
+
+    $query = "INSERT INTO users(name) VALUES('$name')";
+
+    if(mysqli_query($connect, $query)){
+    echo 'User Added...';
+    } else {
+    echo 'ERROR: '.mysqli_error($connect);
+    }
 }
 
 //Check for GET variable
