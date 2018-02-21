@@ -15,12 +15,24 @@
         <input type="submit" value="Submit" >
     </form>
 
+    <h1>AJAX GET FORM</h1>
+    <form id="getForm" >
+        <input type="text" name="name"id="name1" >
+        <input type="submit" value="Submit" >
+    </form>
+
     <script>
     document.getElementById('button').addEventListener('click', getName);
+    document.getElementById('getForm').addEventListener('submit', getName);
 
-    function getName(){
+    function getName(e){
+        //e - event parameter, stopping from submitting the form more than 1 time
+        e.preventDefault();
+
+        var name = document.getElementById('name1').value;
+
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'process.php?name=Bubblegum', true);
+        xhr.open('GET', 'process.php?name='+name, true);
 
         xhr.onload = function(){
             console.log(this.responseText);
