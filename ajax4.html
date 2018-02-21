@@ -15,7 +15,7 @@
 
     function getName(){
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'process.php', true);
+        xhr.open('GET', 'process.php?name=Bubblegum', true);
 
         xhr.onload = function(){
             console.log(this.responseText);
